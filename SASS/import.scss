@@ -1,0 +1,15 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-image: linear-gradient(132deg, rgba(207,157,72,1) 10%, rgba(117,73,2,1) 45%, rgba(85,65,0,1) 90%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+}
+
+@import 'design';
+@import 'other';

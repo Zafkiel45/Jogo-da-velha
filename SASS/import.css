@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-image: linear-gradient(132deg, rgb(207, 157, 72) 10%, rgb(117, 73, 2) 45%, rgb(85, 65, 0) 90%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+}
+
+#container {
+  display: grid;
+  gap: 1.25em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 1% auto;
+  background-color: darkgoldenrod;
+  padding: 2em;
+  border-radius: 1.25em;
+  height: 100%;
+  grid-template-areas: "grid1 grid2 grid3" "grid4 grid5 grid6" "grid7 grid8 grid9";
+}
+#container .item {
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 1.25em;
+}
+
+#player {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin: auto;
+  color: white;
+}
+#player .player {
+  margin: 2%;
+}
+#player .user_1 {
+  background-color: rgba(131, 131, 237, 0.648);
+  padding: 1em;
+  border-radius: 1.25em;
+  border: 1px solid blue;
+}
+#player .user_2 {
+  padding: 1em;
+  background-color: rgba(209, 122, 122, 0.762);
+  border-radius: 1.25em;
+  border: 1px solid red;
+}
+#player .active-1 {
+  background-color: blue;
+}
+#player .active-2 {
+  background-color: red;
+}/*# sourceMappingURL=import.css.map */

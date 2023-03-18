@@ -1,0 +1,28 @@
+#player {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin: auto;
+    color: white;
+    .player {
+        margin: 2%;
+    }
+    .user_1 {
+        background-color: rgba(131, 131, 237, 0.648);
+        padding: 1em;
+        border-radius: 1.25em;
+        border: 1px solid blue;
+    }
+    .user_2 {
+        padding: 1em; 
+        background-color: rgba(209, 122, 122, 0.762);
+        border-radius: 1.25em; 
+        border: 1px solid red;
+    }
+    .active-1 {
+        background-color: blue;
+    }
+    .active-2 {
+        background-color: red;
+    }
+}
