@@ -1,98 +1,65 @@
 const player = document.querySelectorAll('.player');
 const blocks = document.querySelectorAll('.item')
 let cont = 0
+let playerIndex = 0
 
-blocks.forEach(function(item){
-    return item.addEventListener('click', function(color){
-        let evento = color.target
-        if(player[0].classList.contains('active-1')) {
-            if(evento.classList.contains('white')){
-                evento.style.backgroundColor = 'red'
-                evento.classList.remove('white')
-                evento.classList.add('red')
-                player[0].classList.remove('active-1')
-                player[1].classList.add('active-2')
-                cont++
-            }
-        } else if(player[1].classList.contains('active-2')){
-            if(evento.classList.contains('white')){
-                evento.style.backgroundColor = 'blue'
-                evento.classList.remove('white')
-                evento.classList.add('blue')
-                player[1].classList.remove('active-2')
-                player[0].classList.add('active-1')
-                cont++
-            }
-        }
 
-        if(blocks[0].classList.contains('red') && blocks[1].classList.contains('red') && blocks[2].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
+// POSSIBILIDADES DE COMBINAÇÕES PARA VENCER NO JOGO DA VELHA
+const winner = [
+    [0,1,2],
+    [3,4,5], // Horizontal 
+    [6,7,8],
 
-        } else if(blocks[0].classList.contains('red') && blocks[4].classList.contains('red') && blocks[8].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
+    [0,4,8],
+    [2,4,6], // vertical
 
-        } else if(blocks[2].classList.contains('red') && blocks[4].classList.contains('red') && blocks[6].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
+    [0,3,6],
+    [1,4,7], //diagnal
+    [2,5,8],
+]
 
-        } else if(blocks[0].classList.contains('red') && blocks[3].classList.contains('red') && blocks[6].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
 
-        } else if(blocks[1].classList.contains('red') && blocks[4].classList.contains('red') && blocks[7].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
+blocks.forEach(function(evento){ // para cada elemento no "blocks"
+    evento.addEventListener('click', function(item){ // adiciona o elemento "click"
+        const color = item.target // pega o elemento que teve o evento ativado
 
-        } else if(blocks[2].classList.contains('red') && blocks[5].classList.contains('red') && blocks[8].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
-
-        } else if(blocks[3].classList.contains('red') && blocks[4].classList.contains('red') && blocks[5].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
-
-        } else if(blocks[6].classList.contains('red') && blocks[7].classList.contains('red') && blocks[8].classList.contains('red')){
-            alert('Vermelho venceu')
-            location.reload()
-            //Aqui é a possibilidade dos azuis ganharem
-        }else if(blocks[0].classList.contains('blue') && blocks[1].classList.contains('blue') && blocks[2].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-            
-        } else if(blocks[0].classList.contains('blue') && blocks[4].classList.contains('blue') && blocks[8].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-
-        } else if(blocks[2].classList.contains('blue') && blocks[4].classList.contains('blue') && blocks[6].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-
-        } else if(blocks[0].classList.contains('blue') && blocks[3].classList.contains('blue') && blocks[6].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-
-        } else if(blocks[1].classList.contains('blue') && blocks[4].classList.contains('blue') && blocks[7].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-
-        } else if(blocks[2].classList.contains('blue') && blocks[5].classList.contains('blue') && blocks[8].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-
-        } else if(blocks[3].classList.contains('blue') && blocks[4].classList.contains('blue') && blocks[5].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-
-        } else if(blocks[6].classList.contains('blue') && blocks[7].classList.contains('blue') && blocks[8].classList.contains('blue')){
-            alert('Azul venceu')
-            location.reload()
-        } else if(cont == 9) {
-            alert('velha')
+        if(playerIndex == 0 && evento.classList.contains('white')){ // condicional
+            color.style.backgroundColor = 'red' // altera para fundo vermelho
+            evento.classList.remove('white') // remove a classe "white"
+            evento.classList.add('red') // adiciona a classe "red"
+            cont++ // incrementa a variável "cont" 
+            playerIndex++ // incrementa "playIndex"
+            vencedor() // chama a função "vencedor()" e se caso as condições forem atendidas, mostra uma mensagem
+        } else if(playerIndex == 1 && evento.classList.contains('white')){ // funciona da mesma forma que anterior
+            color.style.backgroundColor = 'blue'
+            evento.classList.remove('white')
+            evento.classList.add('blue')
+            cont++
+            playerIndex-- // decremanda a variável "playIndex"
+            vencedor()
         }
     })
 })
+
+function vencedor(){ // cria uma função com o nome vencedor()
+    for(let element = 0; element < winner.length; element++){ // laço que passa por todos os elementos do "winner"
+        const [i,j,k] = winner[element] // armazena os valores do elemento nas 3 variáveis
+
+        // quando atingir alguma das condições, mostra o vencedor 
+        // Ou da velha
+        if(blocks[i].classList.contains('red') &&
+        blocks[j].classList.contains('red') && // 
+        blocks[k].classList.contains('red')){
+            return (alert('vermelho venceu'), location.reload())
+        } else if(blocks[i].classList.contains('blue') &&
+        blocks[j].classList.contains('blue') &&
+        blocks[k].classList.contains('blue')){
+            return alert('azul venceu'), location.reload()
+        } else if(cont == 9) {
+            return alert('deu velha'), location.reload()
+        }
+    }
+}
 
 
 
